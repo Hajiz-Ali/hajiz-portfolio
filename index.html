@@ -186,24 +186,7 @@ header {
   transition: all var(--transition);
 }
 .btn-nav-cta:hover { background: var(--blue-dark); transform: translateY(-1px); }
-.btn-nav-login { background: transparent; border: 1px solid var(--border); color: var(--text); }
-.btn-nav-login:hover { background: var(--card); border-color: var(--blue); color: var(--blue); }
-.user-avatar-wrap { position:relative; }
-.user-avatar-btn { width:36px;height:36px;border-radius:50%;border:2px solid var(--blue);overflow:hidden;cursor:pointer;padding:0;background:none;transition:box-shadow 0.3s; }
-.user-avatar-btn:hover { box-shadow:0 0 0 3px rgba(59,130,246,0.25); }
-.user-avatar-btn img { width:100%;height:100%;object-fit:cover;display:block; }
-.profile-dropdown { position:absolute;top:calc(100% + 10px);right:0;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px;width:240px;box-shadow:0 12px 40px rgba(0,0,0,0.3);z-index:100;display:none;animation:modalIn 0.2s ease; }
-.profile-dropdown.open { display:block; }
-.profile-dropdown-header { display:flex;align-items:center;gap:10px;padding-bottom:4px; }
-.profile-dropdown-header img { width:40px;height:40px;border-radius:50%;object-fit:cover; }
-.profile-dropdown button { width:100%;padding:8px 10px;border:none;background:none;color:var(--text);font-size:13px;text-align:left;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:10px;transition:background 0.2s; }
-.profile-dropdown button:hover { background:var(--glass);color:var(--blue); }
-.profile-dropdown hr { border:none;border-top:1px solid var(--border);margin:8px 0; }
-.pwd-bar { height:4px;flex:1;border-radius:4px;background:var(--border);transition:all 0.3s; }
-.pwd-bar.weak { background:var(--red); }
-.pwd-bar.medium { background:#f59e0b; }
-.pwd-bar.strong { background:#10b981; }
-#drop-zone.drag-over { border-color:var(--blue);background:rgba(59,130,246,0.08); }
+
 .hamburger {
   display: none; flex-direction: column; gap: 5px;
   width: 38px; height: 38px; align-items: center; justify-content: center;
@@ -231,6 +214,11 @@ header {
   font-weight: 500; color: var(--text2); transition: all var(--transition);
 }
 .mobile-nav a:hover { color: var(--text); background: var(--glass); }
+.mobile-nav .mobile-cta {
+  margin-top: 8px; background: var(--blue); color: #fff;
+  display: flex; align-items: center; gap: 8px;
+}
+.mobile-nav .mobile-cta:hover { background: var(--blue-dark); color: #fff; }
 
 /* ============================================================
    SECTION BASE
@@ -1030,34 +1018,139 @@ footer {
    ============================================================ */
 @media (max-width: 1024px) {
   .hero-inner { grid-template-columns: 1fr; text-align: center; }
-  .hero-desc { margin: 0 auto 36px; }
+  .hero-desc { margin: 0 auto 36px; max-width: 100%; }
   .hero-actions { justify-content: center; }
   .hero-socials { justify-content: center; }
   .hero-stats { justify-content: center; }
   .hero-visual { margin-top: 40px; }
-  .about-inner { grid-template-columns: 1fr; }
+  .about-inner { grid-template-columns: 1fr; gap: 40px; }
   .contact-inner { grid-template-columns: 1fr; }
-  .journey-grid { grid-template-columns: 1fr; }
+  .journey-grid { grid-template-columns: 1fr; gap: 40px; }
   .footer-inner { grid-template-columns: 1fr 1fr; }
   .floating-badge-1, .floating-badge-2 { display: none; }
+  #experience .container > div:last-child { grid-template-columns: 1fr !important; gap: 40px !important; }
+  .about-img-badge { right: 0; }
 }
 @media (max-width: 768px) {
-  section { padding: 70px 5%; }
+  section { padding: 60px 5%; }
   .nav-links, .btn-nav-cta { display: none; }
   .hamburger { display: flex; }
   .form-row { grid-template-columns: 1fr; }
-  .avatar-ring { width: 220px; height: 220px; }
-  .avatar-img { width: 195px; height: 195px; font-size: 60px; }
-  .tech-card { width: 200px; padding: 40px 24px; }
-  .tech-icon { font-size: 48px; }
-  .tech-name { font-size: 17px; }
-  .tech-nav { width: 36px; height: 36px; font-size: 14px; }
-  .tech-card-wrap { gap: 12px; }
-  .tech-fade-dots { margin-top: 16px; }
+  .avatar-ring { width: 200px; height: 200px; }
+  .avatar-img { width: 175px; height: 175px; font-size: 50px; }
+  .section-sub { max-width: 100%; margin-bottom: 40px; }
+  .hero-title { font-size: clamp(2rem, 8vw, 2.8rem); }
+  .hero-typing { font-size: 15px; }
+  .hero-desc { font-size: 15px; }
+  .hero-stat-num { font-size: 24px; }
+  .hero-stats { gap: 20px; }
+  .tech-card { width: 180px; padding: 32px 20px; }
+  .tech-icon { font-size: 42px; }
+  .tech-name { font-size: 16px; }
+  .tech-nav { width: 34px; height: 34px; font-size: 13px; }
+  .tech-card-wrap { gap: 10px; }
+  .tech-fade-dots { margin-top: 14px; }
   .projects-grid { grid-template-columns: 1fr; }
-  .footer-inner { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .blog-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .stat-card { padding: 24px 16px; }
+  .stat-num { font-size: 32px; }
+  .achievements-grid { grid-template-columns: 1fr; }
+  .edu-grid { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; gap: 32px; }
   .footer-bottom { flex-direction: column; text-align: center; }
   .github-grid { grid-template-columns: repeat(26, 1fr); }
+  .form-wrap { padding: 24px; }
+  .timeline { padding-left: 24px; }
+  .timeline-dot { left: -30px; width: 12px; height: 12px; }
+  .cert-card { min-width: 240px; padding: 20px; }
+  .contact-card { padding: 16px; }
+  .about-img-badge { right: 0; padding: 12px 16px; }
+  .about-img-badge strong { font-size: 22px; }
+  .journey-fact { padding: 16px; }
+  .faq-q { padding: 16px 20px; font-size: 14px; }
+  #tech-fade { margin: 0 -10px; }
+  .nav-actions { gap: 6px; }
+  .modal { padding: 24px; }
+  .project-filters { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
+  .filter-btn { white-space: nowrap; }
+}
+@media (max-width: 480px) {
+  section { padding: 50px 4%; }
+  .nav-inner { height: 60px; }
+  .nav-logo { font-size: 17px; }
+  .logo-mark { width: 32px; height: 32px; font-size: 12px; }
+  .btn-theme { width: 34px; height: 34px; }
+  .hamburger { width: 34px; height: 34px; gap: 4px; }
+  .hamburger span { width: 18px; }
+  .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  .mobile-nav { padding: 12px 4%; top: 60px; }
+  .mobile-nav a { padding: 10px 14px; font-size: 14px; }
+  .hero-title { font-size: clamp(1.6rem, 10vw, 2rem); }
+  .hero-badge { font-size: 11px; padding: 4px 12px; }
+  .hero-typing { font-size: 13px; min-height: 20px; }
+  .hero-desc { font-size: 14px; }
+  .hero-actions { flex-direction: column; width: 100%; }
+  .hero-actions .btn-primary,
+  .hero-actions .btn-outline { width: 100%; justify-content: center; }
+  .avatar-ring { width: 160px; height: 160px; }
+  .avatar-img { width: 140px; height: 140px; font-size: 40px; }
+  .hero-stat-num { font-size: 20px; }
+  .hero-stat-label { font-size: 11px; }
+  .section-title { font-size: clamp(1.4rem, 6vw, 1.8rem); }
+  .section-sub { font-size: 14px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .stat-num { font-size: 28px; }
+  .stat-icon { font-size: 26px; }
+  .projects-grid { gap: 16px; }
+  .project-body { padding: 18px; }
+  .project-img { height: 160px; }
+  .project-desc { font-size: 13px; }
+  .service-card { padding: 24px; }
+  .tech-card { width: 150px; padding: 24px 16px; aspect-ratio: auto; min-height: 180px; }
+  .tech-icon { font-size: 36px; }
+  .tech-name { font-size: 14px; }
+  .tech-nav { width: 30px; height: 30px; font-size: 12px; }
+  .footer-inner { gap: 24px; }
+  .footer-desc { font-size: 13px; }
+  .form-wrap { padding: 20px; border-radius: var(--radius); }
+  .contact-card { flex-direction: column; text-align: center; padding: 14px; }
+  .contact-icon { margin: 0 auto; }
+  .timeline-card { padding: 18px; }
+  .timeline-title { font-size: 15px; }
+  .timeline-desc { font-size: 13px; }
+  .testimonial-card { padding: 22px; }
+  .testimonial-text { font-size: 14px; }
+  .blog-body { padding: 18px; }
+  .blog-title { font-size: 15px; }
+  .blog-excerpt { font-size: 13px; }
+  .faq-q { padding: 14px 16px; font-size: 13px; }
+  .faq-a { font-size: 13px; }
+  #back-to-top { width: 40px; height: 40px; bottom: 16px; left: 16px; font-size: 15px; }
+  #toast-container { bottom: 16px; right: 16px; left: 16px; }
+  .toast { min-width: unset; width: 100%; font-size: 13px; padding: 12px 16px; }
+  .about-meta-item { font-size: 14px; }
+  .about-img { font-size: 80px; }
+  .tabs { width: 100%; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
+  .tab-btn { white-space: nowrap; font-size: 13px; padding: 7px 14px; }
+  .skills-grid { grid-template-columns: 1fr !important; }
+  .section-label { font-size: 11px; }
+  .code-body { font-size: 12px; padding: 14px; }
+  .cert-card { min-width: 200px; padding: 16px; }
+  .github-grid { grid-template-columns: repeat(14, 1fr); gap: 2px; }
+  .journey-fact h4 { font-size: 14px; }
+  .journey-fact p { font-size: 13px; }
+  .edu-card { padding: 20px; }
+  .edu-degree { font-size: 15px; }
+  .achievement-card { padding: 18px; }
+  .achievement-title { font-size: 14px; }
+  .modal { padding: 20px; }
+  .form-steps-indicator { margin-bottom: 20px; }
+  .hero-visual { margin-top: 24px; }
+  .floating-badge { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -1229,24 +1322,6 @@ footer {
         <i class="fa-solid fa-moon" id="theme-icon"></i>
       </button>
       <a href="#contact" class="btn-nav-cta" data-tooltip-bottom="Hire me for your next project">Hire Me</a>
-      <a href="javascript:void(0)" onclick="openLoginModal()" class="btn-nav-cta btn-nav-login" id="login-btn" data-tooltip-bottom="Sign in to your account">Log In</a>
-      <div class="user-avatar-wrap" id="user-avatar-wrap" style="display:none;">
-        <button class="user-avatar-btn" id="user-avatar-btn" onclick="toggleProfileDropdown()" data-tooltip-bottom="Open profile menu">
-          <img id="user-avatar-img" src="" alt="Profile">
-        </button>
-        <div class="profile-dropdown" id="profile-dropdown">
-          <div class="profile-dropdown-header">
-            <img id="dropdown-avatar" src="" alt="">
-            <div>
-              <div id="dropdown-name" style="font-weight:600;font-size:14px;"></div>
-              <div id="dropdown-email" style="font-size:12px;color:var(--text2);"></div>
-            </div>
-          </div>
-          <hr style="border:none;border-top:1px solid var(--border);margin:8px 0;">
-          <button onclick="showEditProfile()"><i class="fa-solid fa-pen"></i> Edit Profile</button>
-          <button onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i> Log Out</button>
-        </div>
-      </div>
       <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" data-tooltip-bottom="Toggle navigation menu">
         <span></span><span></span><span></span>
       </button>
@@ -1266,12 +1341,13 @@ footer {
 
 <!-- Mobile Nav -->
 <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-  <a href="#about" onclick="closeMobileNav()" data-tooltip="Learn about my background">About</a>
-  <a href="#skills" onclick="closeMobileNav()" data-tooltip="Explore my skills">Skills</a>
-  <a href="#projects" onclick="closeMobileNav()" data-tooltip="Browse projects">Projects</a>
-  <a href="#experience" onclick="closeMobileNav()" data-tooltip="View experience">Experience</a>
-  <a href="#blog" onclick="closeMobileNav()" data-tooltip="Read articles">Blog</a>
-  <a href="#contact" onclick="closeMobileNav()" data-tooltip="Get in touch">Contact</a>
+  <a href="#about" onclick="closeMobileNav()">About</a>
+  <a href="#skills" onclick="closeMobileNav()">Skills</a>
+  <a href="#projects" onclick="closeMobileNav()">Projects</a>
+  <a href="#experience" onclick="closeMobileNav()">Experience</a>
+  <a href="#blog" onclick="closeMobileNav()">Blog</a>
+  <a href="#contact" onclick="closeMobileNav()">Contact</a>
+  <a href="#contact" class="mobile-cta" onclick="closeMobileNav()"><i class="fa-solid fa-paper-plane"></i> Hire Me</a>
 </nav>
 
 <!-- ============================================================
@@ -2222,114 +2298,6 @@ footer {
 <!-- ============================================================
      PROJECT MODAL
      ============================================================ -->
-<div class="modal-backdrop" id="login-modal" onclick="closeLoginModal()">
-  <div class="modal" style="max-width:400px;" onclick="event.stopPropagation()">
-    <div class="modal-header">
-      <div class="modal-title">Log In</div>
-      <button class="modal-close" onclick="closeLoginModal()" aria-label="Close" data-tooltip="Close"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <form id="login-form" onsubmit="handleLogin(event)">
-      <div style="margin-bottom:20px;">
-        <label style="display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--text2);">Email</label>
-        <input type="email" id="login-email" required style="width:100%;padding:12px 16px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:14px;outline:none;transition:border-color 0.3s;" placeholder="your@email.com">
-      </div>
-      <div style="margin-bottom:24px;">
-        <label style="display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--text2);">Password</label>
-        <input type="password" id="login-password" required style="width:100%;padding:12px 16px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:14px;outline:none;transition:border-color 0.3s;" placeholder="Enter password">
-      </div>
-      <button type="submit" style="width:100%;padding:12px;background:var(--blue);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;transition:background 0.3s;" data-tooltip="Sign in to your account">Log In</button>
-      <p id="login-error" style="color:var(--red);font-size:13px;margin-top:12px;display:none;"></p>
-    </form>
-    <div style="text-align:center;margin-top:20px;padding-top:20px;border-top:1px solid var(--border);font-size:14px;color:var(--text2);">
-      Don't have an account? <a href="javascript:void(0)" onclick="switchToSignup()" style="color:var(--blue);font-weight:600;text-decoration:none;" data-tooltip="Create a new account">Create one</a>
-    </div>
-  </div>
-</div>
-
-<div class="modal-backdrop" id="signup-modal" onclick="closeSignupModal()">
-  <div class="modal" style="max-width:480px;" onclick="event.stopPropagation()">
-    <div class="modal-header">
-      <div class="modal-title">Create Account</div>
-      <button class="modal-close" onclick="closeSignupModal()" aria-label="Close" data-tooltip="Close"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <form id="signup-form" onsubmit="handleSignup(event)">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
-        <div>
-          <label style="display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--text2);">First Name</label>
-          <input type="text" id="signup-fname" required style="width:100%;padding:12px 16px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:14px;outline:none;transition:border-color 0.3s;" placeholder="John">
-        </div>
-        <div>
-          <label style="display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--text2);">Last Name</label>
-          <input type="text" id="signup-lname" required style="width:100%;padding:12px 16px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:14px;outline:none;transition:border-color 0.3s;" placeholder="Doe">
-        </div>
-      </div>
-      <div style="margin-bottom:16px;">
-        <label style="display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--text2);">Email</label>
-        <input type="email" id="signup-email" required style="width:100%;padding:12px 16px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:14px;outline:none;transition:border-color 0.3s;" placeholder="you@example.com">
-      </div>
-      <div style="margin-bottom:16px;">
-        <label style="display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--text2);">Phone</label>
-        <div style="display:flex;gap:8px;">
-          <select id="signup-country" style="padding:12px 8px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:14px;outline:none;flex:0 0 auto;width:100px;">
-            <option value="+1">🇺🇸 +1</option>
-            <option value="+44">🇬🇧 +44</option>
-            <option value="+91">🇮🇳 +91</option>
-            <option value="+92" selected>🇵🇰 +92</option>
-            <option value="+971">🇦🇪 +971</option>
-            <option value="+86">🇨🇳 +86</option>
-            <option value="+49">🇩🇪 +49</option>
-            <option value="+33">🇫🇷 +33</option>
-            <option value="+81">🇯🇵 +81</option>
-            <option value="+61">🇦🇺 +61</option>
-          </select>
-          <input type="tel" id="signup-phone" required style="flex:1;padding:12px 16px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:14px;outline:none;transition:border-color 0.3s;" placeholder="9876543210">
-        </div>
-      </div>
-      <div style="margin-bottom:16px;">
-        <label style="display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--text2);">OTP / PIN</label>
-        <input type="text" id="signup-otp" style="width:100%;padding:12px 16px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:14px;outline:none;transition:border-color 0.3s;" placeholder="Enter 6-digit OTP" maxlength="6" inputmode="numeric">
-        <label style="display:flex;align-items:center;gap:8px;margin-top:8px;font-size:13px;color:var(--text2);cursor:pointer;">
-          <input type="checkbox" id="signup-no-otp" onchange="toggleOtp()" style="width:16px;height:16px;accent-color:var(--blue);cursor:pointer;">
-          Go without OTP or verification
-        </label>
-      </div>
-      <div style="margin-bottom:16px;">
-        <label style="display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:var(--text2);">Password</label>
-        <div style="position:relative;">
-          <input type="password" id="signup-password" required style="width:100%;padding:12px 16px;padding-right:44px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:14px;outline:none;transition:border-color 0.3s;" placeholder="Create a strong password" oninput="checkPasswordStrength(this.value)">
-          <button type="button" id="pwd-toggle" onclick="togglePasswordVisibility()" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text2);cursor:pointer;font-size:16px;padding:4px;" tabindex="-1" data-tooltip="Toggle password visibility"><i class="fa-solid fa-eye"></i></button>
-        </div>
-        <div id="pwd-strength" style="margin-top:8px;display:flex;gap:4px;">
-          <div class="pwd-bar"></div>
-          <div class="pwd-bar"></div>
-          <div class="pwd-bar"></div>
-          <div class="pwd-bar"></div>
-        </div>
-        <div id="pwd-strength-text" style="font-size:12px;margin-top:4px;color:var(--text2);min-height:16px;"></div>
-      </div>
-      <div style="margin-bottom:20px;">
-        <label style="display:block;font-size:13px;font-weight:600;margin-bottom:8px;color:var(--text2);">Profile Logo</label>
-        <div id="drop-zone" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')" ondrop="handleDrop(event)" onclick="document.getElementById('file-input').click()" style="border:2px dashed var(--border);border-radius:12px;padding:24px;text-align:center;cursor:pointer;transition:all 0.3s;background:var(--glass);">
-          <div id="drop-placeholder">
-            <i class="fa-solid fa-cloud-arrow-up" style="font-size:28px;color:var(--text2);display:block;margin-bottom:8px;"></i>
-            <span style="font-size:13px;color:var(--text2);">Drag & drop your logo here, or click to browse</span>
-          </div>
-          <div id="drop-preview" style="display:none;">
-            <img id="drop-preview-img" src="" alt="" style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--blue);">
-            <div style="font-size:12px;color:var(--text2);margin-top:6px;">Click to change</div>
-          </div>
-        </div>
-        <input type="file" id="file-input" accept="image/*" style="display:none;" onchange="handleFileSelect(event)">
-      </div>
-      <button type="submit" style="width:100%;padding:12px;background:var(--blue);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;transition:background 0.3s;" data-tooltip="Create your account">Create Account</button>
-      <p id="signup-error" style="color:var(--red);font-size:13px;margin-top:12px;display:none;"></p>
-    </form>
-    <div style="text-align:center;margin-top:20px;padding-top:20px;border-top:1px solid var(--border);font-size:14px;color:var(--text2);">
-      Already have an account? <a href="javascript:void(0)" onclick="switchToLogin()" style="color:var(--blue);font-weight:600;text-decoration:none;" data-tooltip="Sign in to existing account">Log In</a>
-    </div>
-  </div>
-</div>
-
 <div class="modal-backdrop" id="project-modal" onclick="closeModal()">
   <div class="modal" onclick="event.stopPropagation()">
     <div class="modal-header">
@@ -2720,266 +2688,11 @@ function openProjectModal(index) {
   document.getElementById('project-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
-/* ---- Auth Modals ---- */
-let loggedInUser = JSON.parse(localStorage.getItem('auth_user') || 'null');
-let uploadedAvatar = null;
-
-function openLoginModal() {
-  document.getElementById('login-modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  document.getElementById('login-error').style.display = 'none';
-  document.getElementById('login-form').reset();
-}
-function closeLoginModal() {
-  document.getElementById('login-modal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function switchToSignup() {
-  closeLoginModal();
-  openSignupModal();
-}
-function switchToLogin() {
-  closeSignupModal();
-  openLoginModal();
-}
-
-function handleLogin(e) {
-  e.preventDefault();
-  const email = document.getElementById('login-email').value.trim();
-  const password = document.getElementById('login-password').value;
-  const error = document.getElementById('login-error');
-  if (!email || !password) {
-    error.textContent = 'Please fill in all fields.';
-    error.style.display = 'block';
-    return;
-  }
-  if (!email.includes('@')) {
-    error.textContent = 'Please enter a valid email address.';
-    error.style.display = 'block';
-    return;
-  }
-  const stored = JSON.parse(localStorage.getItem('auth_user') || 'null');
-  if (!stored || stored.email !== email) {
-    error.textContent = 'No account found with this email. Please sign up first.';
-    error.style.display = 'block';
-    return;
-  }
-  if (stored.password !== password) {
-    error.textContent = 'Incorrect password. Please try again.';
-    error.style.display = 'block';
-    return;
-  }
-  error.style.display = 'none';
-  loggedInUser = stored;
-  localStorage.setItem('auth_user', JSON.stringify(stored));
-  applyLoggedInState();
-  showToast('Logged in successfully! Welcome back. ✨', 'success');
-  closeLoginModal();
-}
-
-function openSignupModal() {
-  document.getElementById('signup-modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  document.getElementById('signup-error').style.display = 'none';
-  document.getElementById('signup-form').reset();
-  uploadedAvatar = null;
-  document.getElementById('drop-placeholder').style.display = 'block';
-  document.getElementById('drop-preview').style.display = 'none';
-  document.getElementById('pwd-strength-text').textContent = '';
-  document.querySelectorAll('.pwd-bar').forEach(b => { b.className = 'pwd-bar'; });
-  document.getElementById('signup-no-otp').checked = false;
-  document.getElementById('signup-otp').required = true;
-  document.getElementById('signup-otp').disabled = false;
-  document.querySelector('#signup-form button[type="submit"]').textContent = 'Create Account';
-  document.getElementById('signup-modal').querySelector('.modal-title').textContent = 'Create Account';
-}
-function closeSignupModal() {
-  document.getElementById('signup-modal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function togglePasswordVisibility() {
-  const pwd = document.getElementById('signup-password');
-  const icon = document.querySelector('#pwd-toggle i');
-  if (pwd.type === 'password') {
-    pwd.type = 'text';
-    icon.className = 'fa-solid fa-eye-slash';
-  } else {
-    pwd.type = 'password';
-    icon.className = 'fa-solid fa-eye';
-  }
-}
-
-function toggleOtp() {
-  const otp = document.getElementById('signup-otp');
-  const cb = document.getElementById('signup-no-otp');
-  otp.required = !cb.checked;
-  if (cb.checked) { otp.value = 'skipped'; otp.disabled = true; }
-  else { otp.value = ''; otp.disabled = false; }
-}
-
-function checkPasswordStrength(val) {
-  const bars = document.querySelectorAll('.pwd-bar');
-  const text = document.getElementById('pwd-strength-text');
-  if (!val) {
-    bars.forEach(b => { b.className = 'pwd-bar'; });
-    text.textContent = '';
-    return;
-  }
-  let score = 0;
-  if (val.length >= 6) score++;
-  if (val.length >= 10) score++;
-  if (/[A-Z]/.test(val)) score++;
-  if (/[^a-zA-Z0-9]/.test(val)) score++;
-  const labels = ['', 'Weak', 'Medium', 'Strong', 'Very Strong'];
-  const classes = ['', 'weak', 'medium', 'strong', 'strong'];
-  bars.forEach((b, i) => {
-    if (i < score) {
-      b.className = 'pwd-bar ' + classes[score];
-    } else {
-      b.className = 'pwd-bar';
-    }
-  });
-  text.textContent = score > 0 ? labels[score] : '';
-  text.style.color = score <= 1 ? 'var(--red)' : score === 2 ? '#f59e0b' : '#10b981';
-}
-
-function handleDrop(e) {
-  e.preventDefault();
-  document.getElementById('drop-zone').classList.remove('drag-over');
-  const file = e.dataTransfer.files[0];
-  if (file && file.type.startsWith('image/')) processAvatar(file);
-}
-function handleFileSelect(e) {
-  const file = e.target.files[0];
-  if (file && file.type.startsWith('image/')) processAvatar(file);
-}
-function processAvatar(file) {
-  const reader = new FileReader();
-  reader.onload = function(ev) {
-    uploadedAvatar = ev.target.result;
-    document.getElementById('drop-placeholder').style.display = 'none';
-    document.getElementById('drop-preview').style.display = 'block';
-    document.getElementById('drop-preview-img').src = uploadedAvatar;
-  };
-  reader.readAsDataURL(file);
-}
-
-function handleSignup(e) {
-  e.preventDefault();
-  const fname = document.getElementById('signup-fname').value.trim();
-  const lname = document.getElementById('signup-lname').value.trim();
-  const email = document.getElementById('signup-email').value.trim();
-  const country = document.getElementById('signup-country').value;
-  const phone = document.getElementById('signup-phone').value.trim();
-  const otp = document.getElementById('signup-otp').value.trim();
-  const password = document.getElementById('signup-password').value;
-  const error = document.getElementById('signup-error');
-  if (!fname || !lname || !email || !phone || !otp || !password) {
-    error.textContent = 'Please fill in all fields.';
-    error.style.display = 'block';
-    return;
-  }
-  if (!email.includes('@')) {
-    error.textContent = 'Please enter a valid email address.';
-    error.style.display = 'block';
-    return;
-  }
-  const noOtp = document.getElementById('signup-no-otp').checked;
-  if (!noOtp && otp.length < 4) {
-    error.textContent = 'OTP / PIN must be at least 4 characters.';
-    error.style.display = 'block';
-    return;
-  }
-  if (password.length < 6) {
-    error.textContent = 'Password must be at least 6 characters.';
-    error.style.display = 'block';
-    return;
-  }
-  const existing = JSON.parse(localStorage.getItem('auth_user') || 'null');
-  if (existing && existing.email === email) {
-    error.textContent = 'An account with this email already exists. Please log in.';
-    error.style.display = 'block';
-    return;
-  }
-  error.style.display = 'none';
-  loggedInUser = {
-    fname, lname, email, country, phone, otp, password,
-    avatar: uploadedAvatar || ''
-  };
-  localStorage.setItem('auth_user', JSON.stringify(loggedInUser));
-  applyLoggedInState();
-  showToast('Account created! You are now logged in. ✨', 'success');
-  closeSignupModal();
-}
-
-function applyLoggedInState() {
-  const btn = document.getElementById('login-btn');
-  const wrap = document.getElementById('user-avatar-wrap');
-  const img = document.getElementById('user-avatar-img');
-  const dImg = document.getElementById('dropdown-avatar');
-  const dName = document.getElementById('dropdown-name');
-  const dEmail = document.getElementById('dropdown-email');
-  if (loggedInUser) {
-    btn.style.display = 'none';
-    wrap.style.display = 'block';
-    const src = loggedInUser.avatar || 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36"><rect width="36" height="36" rx="18" fill="%233b82f6"/><text x="18" y="23" text-anchor="middle" fill="white" font-size="16" font-weight="bold">' + (loggedInUser.fname ? loggedInUser.fname[0] : 'U') + '</text></svg>');
-    img.src = src;
-    dImg.src = src;
-    dName.textContent = (loggedInUser.fname || '') + ' ' + (loggedInUser.lname || '');
-    dEmail.textContent = loggedInUser.email || '';
-  } else {
-    btn.style.display = '';
-    wrap.style.display = 'none';
-  }
-}
-
-function toggleProfileDropdown() {
-  document.getElementById('profile-dropdown').classList.toggle('open');
-}
-document.addEventListener('click', function(e) {
-  const wrap = document.getElementById('user-avatar-wrap');
-  const dd = document.getElementById('profile-dropdown');
-  if (wrap && dd && !wrap.contains(e.target)) dd.classList.remove('open');
-});
-
-function showEditProfile() {
-  document.getElementById('profile-dropdown').classList.remove('open');
-  openSignupModal();
-  if (loggedInUser) {
-    document.getElementById('signup-fname').value = loggedInUser.fname || '';
-    document.getElementById('signup-lname').value = loggedInUser.lname || '';
-    document.getElementById('signup-email').value = loggedInUser.email || '';
-    document.getElementById('signup-country').value = loggedInUser.country || '+1';
-    document.getElementById('signup-phone').value = loggedInUser.phone || '';
-    document.getElementById('signup-otp').value = loggedInUser.otp || '';
-    document.getElementById('signup-password').value = loggedInUser.password || '';
-    if (loggedInUser.avatar) {
-      uploadedAvatar = loggedInUser.avatar;
-      document.getElementById('drop-placeholder').style.display = 'none';
-      document.getElementById('drop-preview').style.display = 'block';
-      document.getElementById('drop-preview-img').src = loggedInUser.avatar;
-    }
-  }
-  document.querySelector('#signup-form button[type="submit"]').textContent = 'Save Changes';
-  document.getElementById('signup-modal').querySelector('.modal-title').textContent = 'Edit Profile';
-}
-
-function handleLogout() {
-  loggedInUser = null;
-  localStorage.removeItem('auth_user');
-  applyLoggedInState();
-  document.getElementById('profile-dropdown').classList.remove('open');
-  showToast('Logged out successfully.', 'info');
-}
-
-applyLoggedInState();
-
 function closeModal() {
   document.getElementById('project-modal').classList.remove('open');
   document.body.style.overflow = '';
 }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeLoginModal(); } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); } });
 
 /* ---- GitHub Grid ---- */
 function buildGhGrid() {
