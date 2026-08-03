@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "Portfolio website with Brevo contact form backend",
   "main": "server.js",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
   "scripts": {
+    "build": "node --check server.js",
     "start": "node server.js",
     "dev": "node server.js"
   },

@@ -189,15 +189,23 @@ app.post('/api/contact', async (req, res) => {
 </body>
 </html>`;
 
+    const apiKey = process.env.BREVO_API_KEY;
+    const recipientEmail = process.env.RECIPIENT_EMAIL;
+
+    if (!apiKey || !recipientEmail) {
+      console.error('Missing BREVO_API_KEY or RECIPIENT_EMAIL environment variables');
+      return res.status(500).json({ success: false, error: 'Contact form is not configured. Please try again later.' });
+    }
+
     const response = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: {
-        'api-key': process.env.BREVO_API_KEY,
+        'api-key': apiKey,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        sender: { name: 'Portfolio', email: process.env.RECIPIENT_EMAIL },
-        to: [{ email: process.env.RECIPIENT_EMAIL, name: process.env.RECIPIENT_NAME }],
+        sender: { name: 'Portfolio', email: recipientEmail },
+        to: [{ email: recipientEmail, name: process.env.RECIPIENT_NAME || 'Hajiz Ali' }],
         subject: `Portfolio Contact from ${fullName}: ${subject}`,
         htmlContent: emailBody,
         replyTo: { name: fullName, email: email },
