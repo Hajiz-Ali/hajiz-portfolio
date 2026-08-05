@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
 <style>
 /* ============================================================
@@ -518,6 +519,9 @@ section {
   opacity: 1; transform: scale(1);
 }
 .tech-icon { font-size: 64px; }
+.tech-icon .devicon-nextjs-original.colored,
+.tech-icon .devicon-nextjs-line.colored,
+.tech-icon .devicon-nextjs-plain.colored { color: var(--text); }
 .tech-name { font-size: 20px; font-weight: 700; text-align: center; color: var(--text); }
 .tech-nav {
   width: 44px; height: 44px; border-radius: 50%;
@@ -540,6 +544,22 @@ section {
 }
 .tech-fade-dots .dot.active {
   background: var(--blue); width: 24px; border-radius: 4px;
+}
+
+[data-theme="light"] .tech-card {
+  border: 1px solid rgba(15,23,42,0.18);
+  box-shadow: 0 6px 24px rgba(15,23,42,0.08);
+}
+[data-theme="light"] .tech-nav {
+  border: 1px solid rgba(15,23,42,0.22);
+  background: #fff;
+}
+[data-theme="light"] .tech-fade-dots .dot {
+  border: 1px solid rgba(15,23,42,0.25);
+  background: rgba(15,23,42,0.08);
+}
+[data-theme="light"] .tech-fade-dots .dot.active {
+  border-color: var(--blue); background: var(--blue);
 }
 
 /* ============================================================
@@ -1610,7 +1630,7 @@ footer {
         <div class="tech-card-wrap">
           <button class="tech-nav tech-prev" id="tech-prev" aria-label="Previous" data-tooltip="Previous technology"><i class="fa-solid fa-chevron-left"></i></button>
           <div class="tech-card" id="tech-card">
-            <div class="tech-icon" id="tech-icon">🌐</div>
+            <div class="tech-icon" id="tech-icon"><i class="devicon-html5-plain colored"></i></div>
             <div class="tech-name" id="tech-name">HTML5</div>
           </div>
           <button class="tech-nav tech-next" id="tech-next" aria-label="Next" data-tooltip="Next technology"><i class="fa-solid fa-chevron-right"></i></button>
@@ -1810,7 +1830,7 @@ footer {
         <div class="edu-grid" style="grid-template-columns:1fr;">
           <div class="edu-card">
             <div class="edu-icon">🎓</div>
-            <div class="edu-degree">BS Computer Science</div>
+            <div class="edu-degree">Matriculation Computer Science</div>
             <div class="edu-school">University of Engineering & Technology, Lahore</div>
             <div class="edu-period">2020 — 2024</div>
             <div class="edu-desc">Focused on Software Engineering, Data Structures, Web Development, and UI/UX principles. CGPA: 3.6/4.0</div>
@@ -2732,18 +2752,17 @@ try {
 /* ---- Tech Fade ---- */
 (function() {
   const techs = [
-    { icon: '🌐', name: 'HTML5' },
-    { icon: '🎨', name: 'CSS3' },
-    { icon: '⚡', name: 'JavaScript' },
-    { icon: '🔷', name: 'TypeScript' },
-    { icon: '⚛️', name: 'React' },
-    { icon: '▲', name: 'Next.js' },
-    { icon: '💨', name: 'Tailwind' },
-    { icon: '🟢', name: 'Node.js' },
-    { icon: '🍃', name: 'MongoDB' },
-    { icon: '🔀', name: 'Git' },
-
-    { icon: '💙', name: 'VS Code' }
+    { icon: 'devicon-html5-plain colored', name: 'HTML5' },
+    { icon: 'devicon-css3-plain colored', name: 'CSS3' },
+    { icon: 'devicon-javascript-plain colored', name: 'JavaScript' },
+    { icon: 'devicon-typescript-plain colored', name: 'TypeScript' },
+    { icon: 'devicon-react-original colored', name: 'React' },
+    { icon: 'devicon-nextjs-plain colored', name: 'Next.js' },
+    { icon: 'devicon-tailwindcss-original colored', name: 'Tailwind' },
+    { icon: 'devicon-nodejs-plain colored', name: 'Node.js' },
+    { icon: 'devicon-mongodb-plain colored', name: 'MongoDB' },
+    { icon: 'devicon-git-plain colored', name: 'Git' },
+    { icon: 'devicon-vscode-plain colored', name: 'VS Code' }
   ];
   const card = document.getElementById('tech-card');
   const icon = document.getElementById('tech-icon');
@@ -2775,7 +2794,7 @@ try {
     card.classList.add('fade-out');
     setTimeout(() => {
       current = index;
-      icon.textContent = techs[current].icon;
+      icon.innerHTML = '<i class="' + techs[current].icon + '"></i>';
       name.textContent = techs[current].name;
       card.classList.remove('fade-out');
       card.classList.add('fade-in');
